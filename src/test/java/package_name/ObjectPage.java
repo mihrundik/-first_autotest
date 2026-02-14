@@ -8,12 +8,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-import static package_name.AbstractClassTest.driver;
+import static package_name.AbstractClass.driver;
 
 
 public class ObjectPage {
 
-    protected final WebDriverWait wait;
+    public final WebDriverWait wait;
 
 
     // используемые в тестах элементы страницы
@@ -119,17 +119,5 @@ public class ObjectPage {
         return outputForm.getText();
     }
 
-//    // проверка наличия модального окна ошибки
-//    public boolean isModalErrorPresent() {
-//        try {
-//            Alert alert = driver.switchTo().alert();
-//            String alertText = alert.getText();  // считывание текста алерта
-//            System.out.println("Сообщение алерта: " + alertText);
-//            alert.accept();                      // нажимаем OK
-//        } catch (NoAlertPresentException e) {
-//            System.out.println("Окно алерта не появилось.");
-//        }
-//        return false;
-//    }
 
 }
