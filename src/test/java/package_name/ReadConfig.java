@@ -1,17 +1,16 @@
 package package_name;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Locale;
 import java.util.Properties;
 
-public final class Config {
+public final class ReadConfig {
 
     private static final Properties PROPERTIES = new Properties();
 
     static {
         InputStream inputStream = null;
         try {
-            inputStream = Config.class.getResourceAsStream("/constant.properties"); // ищем ресурс относительно classpath
+            inputStream = ReadConfig.class.getResourceAsStream("/constant.properties"); // ищем ресурс относительно classpath
             if (inputStream != null) {
                 PROPERTIES.load(inputStream);
             }

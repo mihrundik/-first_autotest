@@ -8,16 +8,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-import java.util.Properties;
-import java.io.FileInputStream;
 import java.io.IOException;
 
-abstract class AbstractClassTest {
+public abstract class AbstractClass {
 
-    static final Logger log = LogManager.getLogger(AbstractClassTest.class);
+    static final Logger log = LogManager.getLogger(AbstractClass.class);
     protected static WebDriver driver;
     protected static ObjectPage page;
-    private static final String URL = Config.getUrl();
+    private static final String URL = ReadConfig.getUrl();
 
     protected abstract ChromeOptions createChromeOptions();
 
