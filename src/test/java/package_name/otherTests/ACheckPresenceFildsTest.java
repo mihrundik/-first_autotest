@@ -1,8 +1,6 @@
 package package_name.otherTests;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -13,7 +11,9 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class CheckPresenceFilds extends AbstractClass {
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+
+public class ACheckPresenceFildsTest extends AbstractClass {
 
     @Override
     public ChromeOptions createChromeOptions() {

@@ -42,7 +42,6 @@ public class ObjectPage {
     private WebElement outputForm;
 
 
-
     // инициализируем класс и связываем объекты элементов на странице
     public ObjectPage(WebDriver driver) {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(1));   // оставила ождание на случай плохого интернета

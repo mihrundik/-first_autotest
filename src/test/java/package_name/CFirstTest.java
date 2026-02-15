@@ -1,14 +1,14 @@
 package package_name;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class FirstTest extends AbstractClass {
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+
+public class CFirstTest extends AbstractClass {
 
     @Override
     public ChromeOptions createChromeOptions() {
@@ -18,7 +18,7 @@ public class FirstTest extends AbstractClass {
     }
 
     @Test
-    @Order(8)
+    @Order(1)
     @DisplayName("Проверка формы регистрации")
     void sendOutput() throws Exception {
         String date = ReadConfig.getBirthDayDD() + ReadConfig.getBirthMonthMM() + ReadConfig.getBirthYearYYYY();

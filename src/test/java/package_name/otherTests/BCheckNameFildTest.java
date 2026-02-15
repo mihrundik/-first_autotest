@@ -1,15 +1,15 @@
 package package_name.otherTests;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.chrome.ChromeOptions;
 import package_name.AbstractClass;
 import package_name.ReadConfig;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class CheckNameFild extends AbstractClass {
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class) // для воспроизведения тестов в заданном порядке
+
+public class BCheckNameFildTest extends AbstractClass {
 
     public static void runTest() {
     }
@@ -22,7 +22,7 @@ public class CheckNameFild extends AbstractClass {
     }
 
     @Test
-    @Order(2)
+    @Order(1)
     @DisplayName("Проверка заполнения поля Имя пользователя")
     void sendName() {
         page.fillInputName(ReadConfig.getUsername());
@@ -33,7 +33,7 @@ public class CheckNameFild extends AbstractClass {
     }
 
     @Test
-    @Order(3)
+    @Order(2)
     @DisplayName("Проверка заполнения поля Электронная почта")
     void sendEmail() {
         page.fillInputEmail(ReadConfig.getEmail());
@@ -44,7 +44,7 @@ public class CheckNameFild extends AbstractClass {
     }
 
     @Test
-    @Order(4)
+    @Order(3)
     @DisplayName("Проверка заполнения поля Пароль")
     void sendPass() {
         page.fillInputPassword(ReadConfig.getPassword());
@@ -55,7 +55,7 @@ public class CheckNameFild extends AbstractClass {
     }
 
     @Test
-    @Order(5)
+    @Order(4)
     @DisplayName("Проверка заполнения поля Подтвердите пароль")
     void sendCPass() {
         page.fillPasswordConfirmation(ReadConfig.getConfirmPassword());
@@ -66,7 +66,7 @@ public class CheckNameFild extends AbstractClass {
     }
 
     @Test
-    @Order(6)
+    @Order(5)
     @DisplayName("Проверка заполнения поля Дата рождения")
     void sendBirthDate() {
         String date = ReadConfig.getBirthDayDD() + ReadConfig.getBirthMonthMM() + ReadConfig.getBirthYearYYYY();
@@ -78,7 +78,7 @@ public class CheckNameFild extends AbstractClass {
     }
 
     @Test
-    @Order(7)
+    @Order(6)
     @DisplayName("Проверка заполнения поля Уровень знания языка")
     void sendLanguageLevel() {
         page.selectInputLanguageLevel(ReadConfig.getLanguageLevel());
