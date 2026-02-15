@@ -1,4 +1,5 @@
 package package_name;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -18,7 +19,10 @@ public final class ReadConfig {
             throw new RuntimeException("Ошибка загрузки файла конфигурации.", e);
         } finally {
             if (inputStream != null) {
-                try { inputStream.close(); } catch (IOException ignored) {}
+                try {
+                    inputStream.close();
+                } catch (IOException ignored) {
+                }
             }
         }
     }
