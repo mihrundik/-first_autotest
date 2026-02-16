@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 
-public class CFirstTest extends AbstractClass {
+public class FirstTest extends AbstractClass {
 
     @Override
     public ChromeOptions createChromeOptions() {

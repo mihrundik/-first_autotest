@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class) // для воспроизведения тестов в заданном порядке
 
-public class BCheckNameFildTest extends AbstractClass {
+public class CheckNameFildTest extends AbstractClass {
 
     public static void runTest() {
     }

@@ -17,7 +17,7 @@ public abstract class AbstractClass {
     protected static ObjectPage page;
     private static final String URL = ReadConfig.getUrl();
 
-    protected abstract ChromeOptions createChromeOptions();
+    public abstract ChromeOptions createChromeOptions();
 
 
     // логирование успешности/неуспешности прохождения теста
