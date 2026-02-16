@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 
-public class ACheckPresenceFildsTest extends AbstractClass {
+public class CheckPresenceFildsTest extends AbstractClass {
 
     @Override
     public ChromeOptions createChromeOptions() {
