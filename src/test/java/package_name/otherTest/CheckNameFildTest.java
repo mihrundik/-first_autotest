@@ -1,18 +1,15 @@
-package package_name.otherTests;
+package package_name.otherTest;
 
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.chrome.ChromeOptions;
 import package_name.AbstractClass;
-import package_name.ReadConfig;
+import package_name.EnvConfig;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static package_name.EnvConfig.getBirthYear;
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class) // для воспроизведения тестов в заданном порядке
 
 public class CheckNameFildTest extends AbstractClass {
-
-    public static void runTest() {
-    }
 
     @Override
     public ChromeOptions createChromeOptions() {
@@ -22,54 +19,49 @@ public class CheckNameFildTest extends AbstractClass {
     }
 
     @Test
-    @Order(1)
     @DisplayName("Проверка заполнения поля Имя пользователя")
     void sendName() {
-        page.fillInputName(ReadConfig.getUsername());
+        page.fillInputName(EnvConfig.getUsername());
 
-        boolean result = page.fillInputName(ReadConfig.getUsername());
+        boolean result = page.fillInputName(EnvConfig.getUsername());
         statusTest(result, "Проверка отправки текста в форму 'sendName'");
         assertTrue(result);
     }
 
     @Test
-    @Order(2)
     @DisplayName("Проверка заполнения поля Электронная почта")
     void sendEmail() {
-        page.fillInputEmail(ReadConfig.getEmail());
+        page.fillInputEmail(EnvConfig.getEmail());
 
-        boolean result = page.fillInputEmail(ReadConfig.getEmail());
+        boolean result = page.fillInputEmail(EnvConfig.getEmail());
         statusTest(result, "Проверка отправки текста в форму 'sendEmail'");
         assertTrue(result);
     }
 
     @Test
-    @Order(3)
     @DisplayName("Проверка заполнения поля Пароль")
     void sendPass() {
-        page.fillInputPassword(ReadConfig.getPassword());
+        page.fillInputPassword(EnvConfig.getPassword());
 
-        boolean result = page.fillInputPassword(ReadConfig.getPassword());
+        boolean result = page.fillInputPassword(EnvConfig.getPassword());
         statusTest(result, "Проверка отправки текста в форму 'sendPass'");
         assertTrue(result);
     }
 
     @Test
-    @Order(4)
     @DisplayName("Проверка заполнения поля Подтвердите пароль")
     void sendCPass() {
-        page.fillPasswordConfirmation(ReadConfig.getConfirmPassword());
+        page.fillPasswordConfirmation(EnvConfig.getCPassword());
 
-        boolean result = page.fillPasswordConfirmation(ReadConfig.getConfirmPassword());
+        boolean result = page.fillPasswordConfirmation(EnvConfig.getCPassword());
         statusTest(result, "Проверка отправки текста в форму 'sendCPass'");
         assertTrue(result);
     }
 
     @Test
-    @Order(5)
     @DisplayName("Проверка заполнения поля Дата рождения")
     void sendBirthDate() {
-        String date = ReadConfig.getBirthDayDD() + ReadConfig.getBirthMonthMM() + ReadConfig.getBirthYearYYYY();
+        String date = EnvConfig.getBirthDay() + EnvConfig.getBirthMonth() + getBirthYear();
         page.fillBirthDate(date);
 
         boolean result = page.fillBirthDate(date);
@@ -78,16 +70,12 @@ public class CheckNameFildTest extends AbstractClass {
     }
 
     @Test
-    @Order(6)
     @DisplayName("Проверка заполнения поля Уровень знания языка")
     void sendLanguageLevel() {
-        page.selectInputLanguageLevel(ReadConfig.getLanguageLevel());
+        page.selectInputLanguageLevel(EnvConfig.getLevel());
         boolean result = true;
 
         statusTest(result, "Проверка отправки текста в форму 'sendLanguageLevel'");
         assertTrue(result);
     }
 }
-
-
-
