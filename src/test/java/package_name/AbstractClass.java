@@ -13,9 +13,9 @@ import java.io.IOException;
 public abstract class AbstractClass {
 
     static final Logger log = LogManager.getLogger(AbstractClass.class);
-    protected static WebDriver driver;
-    protected static ObjectPage page;
-    private static final String URL = ReadConfig.getUrl();
+    protected WebDriver driver;
+    protected static PageFactor page;
+    private static final String URL = EnvConfig.getUrl();
 
     public abstract ChromeOptions createChromeOptions();
 
@@ -37,13 +37,13 @@ public abstract class AbstractClass {
     }
 
     @BeforeEach
-    public void driverStart(TestInfo testInfo) throws IOException {
+    public void driverStart(TestInfo testInfo) {
         log.info("Запуск теста: {}", testInfo.getDisplayName());
 
         ChromeOptions options = createChromeOptions();  // опции браузера исходя из реализации конкретного теста
         driver = new ChromeDriver(options);
         driver.get(URL);
-        page = new ObjectPage(driver);
+        page = new PageFactor(driver);
     }
 
     @AfterEach

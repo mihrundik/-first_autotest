@@ -1,6 +1,7 @@
 package package_name;
 
-import org.openqa.selenium.*;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
@@ -8,13 +9,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-import static package_name.AbstractClass.driver;
 
-
-public class ObjectPage {
+public class PageFactor {
 
     public final WebDriverWait wait;
-
 
     // используемые в тестах элементы страницы
     @FindBy(id = "username")
@@ -43,60 +41,56 @@ public class ObjectPage {
 
 
     // инициализируем класс и связываем объекты элементов на странице
-    public ObjectPage(WebDriver driver) {
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(1));   // оставила ождание на случай плохого интернета
+    public PageFactor(WebDriver driver) {
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(1));
         PageFactory.initElements(driver, this);
     }
 
 
-    // функции заполнения полей
-    public boolean fillInputName(String value) {
-        inputName.clear();
-        inputName.sendKeys(value);
+    // единая функция для заполнения полей
+    private boolean fillField(WebElement element, String value) {
+        element.clear();
+        element.sendKeys(value);
         return true;
     }
 
-    public boolean fillInputEmail(String value) {
-        inputEmail.clear();
-        inputEmail.sendKeys(value);
-        return true;
+    public boolean fillInputName(String username) {
+        return fillField(inputName, username);
     }
 
-    public boolean fillInputPassword(String value) {
-        inputPassword.clear();
-        inputPassword.sendKeys(value);
-        return true;
+    public boolean fillInputEmail(String email) {
+        return fillField(inputEmail, email);
     }
 
-    public boolean fillPasswordConfirmation(String value) {
-        passwordConfirmation.clear();
-        passwordConfirmation.sendKeys(value);
-        return true;
+    public boolean fillInputPassword(String password) {
+        return fillField(inputPassword, password);
+    }
+
+    public boolean fillPasswordConfirmation(String cPassword) {
+        return fillField(passwordConfirmation, cPassword);
     }
 
     public boolean fillBirthDate(String dateValue) {
-        inputBirthdate.clear();
-        inputBirthdate.sendKeys(dateValue);
-        return true;
+        return fillField(inputBirthdate, dateValue);
     }
 
 
     // функция выбора уровня владения языком
     public void selectInputLanguageLevel(String level) {
-        WebElement languageDropdown = driver.findElement(By.id("language_level"));
-        Select dropdown = new Select(languageDropdown);
+        Select dropdown = new Select(inputLanguageLevel); // используем элемент из @FindBy
         dropdown.selectByVisibleText(level);
     }
 
     // проверка значений поля ввода
-    public boolean heckPasswordsMatch(String password, String confirmPassword) {
+    public boolean checkPasswordsMatch(String password, String confirmPassword) {
         String actualPassword = inputPassword.getAttribute("value");
         String actualConfirmPassword = passwordConfirmation.getAttribute("value");
         return actualPassword.equals(actualConfirmPassword);
     }
 
     // заполнение полей формы
-    public void fillForm(String name, String email, String password, String cPassword, String birthdate, String language) {
+    public void fillForm(String name, String email, String password, String cPassword,
+                         String birthdate, String language) {
         fillInputName(name);
         fillInputEmail(email);
         fillInputPassword(password);
@@ -107,16 +101,15 @@ public class ObjectPage {
 
     // отправка заполненной формы
     public void submitForm(String password, String cPassword) throws Exception {
-        if (!heckPasswordsMatch(password, cPassword)) { // сначала проверяем пароли
+        if (!checkPasswordsMatch(password, cPassword)) { // исправлено название метода
             throw new Exception("Пароли не совпадают!");
         }
-        inputForm.click(); // если пароли совпадают
+        inputForm.click();
     }
 
     // проверка результата отправки формы
     public String readOutputForm() {
         return outputForm.getText();
     }
-
 
 }
